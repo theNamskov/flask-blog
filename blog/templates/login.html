@@ -1,0 +1,71 @@
+<!--ALL SYNTAXES AND NAMING CONVENTIONS ARE DERIVED FROM HTML5, JINJA 2, PYTHON 3.6 AND BOOTSTRAP 4-->
+
+<!--EXTENDS ALL DOCUMENT ELEMENTS OF THE SPECIFIED DOCUMENT TO THIS DOCUMENT-->
+{% extends "generic.html" %}
+
+<!--BLOCK OF CODE ENCAPSULATED IN `block content(NAMING CONVENTION: `type variablename` eg 'block content')` IS IMPLEMENTED IN `block content` SECTION ACROSS ALL EXTENDED DOCUMENTS-->
+{% block content %}
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Login</legend>
+
+        <!--
+                   `email` FIELD
+        -->
+        <div class="form-group">
+            {{ form.email.label(class="form-control-label") }}
+            
+            {% if form.email.errors %}
+              {{ form.email(class='form-control form-control-sm is-invalid') }}
+                <div class="invalid-feedback">
+                  {% for error in form.email.errors %}
+                    <span>{{error}}</span>
+                  {% endfor %}
+                </div>
+            {% else %}
+              {{ form.email(class="form-control form-control-sm") }}
+            {% endif %}
+          </div>
+
+          <!--
+                   `password` FIELD
+          -->
+          <div class="form-group">
+              {{ form.password.label(class="form-control-label") }}
+              
+              {% if form.password.errors %}
+                {{ form.password(class='form-control form-control-sm is-invalid') }}
+                  <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                      <span>{{error}}</span>
+                    {% endfor %}
+                  </div>
+              {% else %}
+                {{ form.password(class="form-control form-control-sm") }}
+              {% endif %}
+            </div>
+            <div class="form-check">
+              {{ form.remember(class="form-check-input")}}
+              {{ form.remember.label(class="form-check-label") }}
+            </div>
+      </fieldset>
+
+      <!--`submit` BUTTON-->
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-light bg-dark text-light") }}
+      </div>
+      <small class="text-muted ml-2">
+        <a href="#">Forgot Password? </a>
+      </small>
+    </form>
+  </div>
+
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      Need an account?  <a href="{{url_for('register')}}" class="ml-2 pb-4">Signup Now!</a>
+    </small>
+  </div>
+{% endblock content %}

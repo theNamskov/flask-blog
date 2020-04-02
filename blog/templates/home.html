@@ -1,0 +1,16 @@
+{% extends "generic.html" %}
+{% block content %}
+  {% for post in posts %}
+    <div class="content-section">
+      <h1>{{ post.title }}</h1>
+      <h4>By {{ post.author }} on {{ post.datePosted }}</h4>
+      <p>{{ post.content }}</p>
+    </div>
+  {% endfor %} 
+  <!-- <script type="text/javascript">
+    var val = {{posts[1].author|tojson}};
+    alert(`Welcome ${val}`);
+  </script> -->
+{% endblock content %}
+
+
